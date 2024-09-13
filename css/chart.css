@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    /* padding: 20px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+.chart-container {
+    width: 90vh;
+    height: auto;
+    margin: 10px 0;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.chart-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.chart-buttons button {
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.chart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.titleCategories {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.chart-buttons {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.chart-buttons button {
+    padding: 5px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    box-shadow: 1px 1px 5px #00000028;
+    border-radius: 5px;
+    transition: 200ms ease-in-out;
+
+}
+
+.chart-buttons button:hover {
+    background: #cacaca28;
+    transition: 200ms ease-in-out;
+}
+
+.chart-legend {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 12px;
+    justify-content: center;
+    width: 100%;
+}
+
+.chart-legend div {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-self: left;
+    margin-right: 15px;
+    margin: .1rem;
+}

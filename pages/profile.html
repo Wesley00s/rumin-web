@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rumin Web/Perfil</title>
+    <link rel="stylesheet" href="../style.css" />
+
+    <script
+      defer
+      src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"
+    ></script>
+    <script
+      defer
+      src="https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js"
+    ></script>
+    <script defer src="../js/script.js"></script>
+    <script defer src="../js/profile.js"></script>
+    <label defer src="../js/label.js"></label>
+  </head>
+  <body>
+    <div class="header">
+      <a href="profile.html" class="logo">Rumin Web - Perfil</a>
+      <i class="fa-solid fa-bars" id="menu-icons"></i>
+      <div class="navbar" id="navbar">
+        <a href="#">Perfil</a>
+        <a href="../pages/property.html">Propriedades</a>
+        <a href="../pages/flock.html">Rebanho</a>
+        <a href="../pages/dashboard.html">Estatísticas</a>
+        <a href="../index.html">Sair</a>
+      </div>
+    </div>
+    <div class="introduce">
+      <div class="first-introduce">
+        <img src="../images/data.png" alt="Dados" width="450px" />
+        <div class="text">
+          <h1>Proprietário</h1>
+          <h2></h2>
+        </div>
+      </div>
+      <div class="container">
+        <div class="input-wrapper">
+          <label for="fullName">Nome completo</label>
+          <input id="fullName" type="text" readonly value="Nome completo" />
+        </div>
+        <div class="input-wrapper">
+          <label for="occupation">Ocupação</label>
+          <input id="occupation" type="text" readonly value="Ocupação" />
+        </div>
+        <div class="input-wrapper">
+          <label for="dateOfBirth">Data de Nascimento</label>
+          <input
+            id="dateOfBirth"
+            type="text"
+            readonly
+            value="Data de Nascimento"
+          />
+        </div>
+        <div class="input-wrapper">
+          <label for="email">Email</label>
+          <input id="email" type="email" readonly value="Email" />
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="author">
+        <div class="copyright">
+          <img src="../images/cidts.jpeg" alt="" />
+          <img src="../images/ifce.png" alt="" />
+        </div>
+        <div class="text">
+          All Right Reserved
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

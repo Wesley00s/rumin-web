@@ -1,0 +1,43 @@
+/* style.css */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.header, .footer {
+    background-color: #f4f4f4;
+    padding: 10px;
+    text-align: center;
+}
+
+.logo {
+    font-size: 24px;
+    text-decoration: none;
+    color: #333;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #333;
+    margin: 0 15px;
+}
+
+.dash-graphics {
+    padding: 20px;
+    text-align: center;
+}
+
+.animal-details {
+    padding: 20px;
+}
+
+.animal-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+.animal-item img {
+    max-width: 150px;
+    height: auto;
+}

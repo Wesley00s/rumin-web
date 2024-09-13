@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rumin Web</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <script type="module" src="js/firebaseConfig.js"></script>
+    <script type="module" src="js/login.js"></script>
+    <script type="module" src="js/script.js"></script>
+  </head>
+  <body>
+    <header class="login">
+      <div class="screen">
+        <div class="title">
+          Bem-vindo(a) à versão web
+        </div>
+        <div class="image">
+          <img src="images/bode.jpeg" alt="Bode" />
+        </div>
+      </div>
+      <div class="credentials">
+        <div class="input-box">
+          <input type="email" id="email" placeholder="Email" required />
+          <input type="password" id="password" placeholder="Senha" required />
+        </div>
+        <input type="button" value="Entrar" class="btn" id="btn_entrar" />
+      </div>
+    </header>
+
+    <div id="data"></div>
+  </body>
+</html>
