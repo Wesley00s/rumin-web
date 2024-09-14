@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            window.location.href = '../pages/profile.html';
+            window.location.href = './pages/profile.html';
             sessionStorage.setItem("userEmail", userCredential.user.email)
             // alert("Login realizado com sucesso!");
         } catch (error) {
