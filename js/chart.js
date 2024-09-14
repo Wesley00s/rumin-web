@@ -1,11 +1,52 @@
-let charts = {};
+import { backgroundColors, borderColors } from './colorsCharts.js';
 
-// URLs para os endpoints da API
-const userId = "produtor@gmail.com";
-const propId = 'Propriedade 1';
-const baseUrl = `http://0.0.0.0:8080/user/${userId}/property/${propId}/animals`;
+const charts = {};
+const userEmail = sessionStorage.getItem('userEmail');
+const baseUrl = `https://ruminweb-api-repo-v1-wvlj.onrender.com/user/${userEmail}`;
+const hiddenVisibleCharts = document.querySelector('.hidden-visible-charts');
+function showLoadingSpinner() {
+  document.getElementById('loadingSpinner').style.display = 'flex';
+  document.querySelector('.spinner').style.display = 'block';
 
-// Função para buscar dados de uma API
+}
+
+function hideLoadingSpinner() {
+  document.querySelector('#loadingSpinner').style.display = 'none';
+  document.querySelector('.spinner').style.display = 'none';
+}
+
+const properties = JSON.parse(sessionStorage.getItem("properties"));
+
+function createPropertyButtons() {
+  const container = document.getElementById('propertiesButtons');
+  properties.forEach(property => {
+    const button = document.createElement('button');
+    button.innerText = property.propertyName;
+    button.className = 'property-button';
+    button.addEventListener('click', () => {
+      loadPropertyData(property.propertyName);
+      hiddenVisibleCharts.style.display = 'block';
+
+    });
+    container.appendChild(button);
+  });
+}
+
+async function loadPropertyData(propId) {
+  showLoadingSpinner();
+  try {
+    const propertyUrl = `${baseUrl}/property/${propId}/animals`;
+
+    await loadTotalAnimals(propertyUrl);
+    await loadCategoryData(propertyUrl);
+    await loadBreedData(propertyUrl);
+    await loadGenderData(propertyUrl);
+
+  } finally {
+    hideLoadingSpinner();
+  }
+}
+
 async function fetchData(url) {
   const response = await fetch(url);
   const data = await response.json();
@@ -14,7 +55,7 @@ async function fetchData(url) {
 
 function renderCustomLegend(legendContainerId, labels, backgroundColors) {
   const legendContainer = document.getElementById(legendContainerId);
-  legendContainer.innerHTML = ''; // Limpa qualquer conteúdo existente
+  legendContainer.innerHTML = '';
 
   labels.forEach((label, index) => {
     const colorBox = document.createElement('span');
@@ -41,40 +82,12 @@ function renderCustomLegend(legendContainerId, labels, backgroundColors) {
 function renderChart(canvasId, labels, data, title, chartType = 'bar') {
   const ctx = document.getElementById(canvasId).getContext('2d');
 
-  // Se um gráfico já existir para esse canvas, destrua-o antes de criar um novo
   if (charts[canvasId]) {
     charts[canvasId].destroy();
   }
 
-  const backgroundColors = [
-    'rgba(255, 99, 132, 0.6)',
-    'rgba(255, 206, 86, 0.6)',
-    'rgba(75, 192, 192, 0.6)',
-    'rgba(153, 102, 255, 0.6)',
-    'rgba(255, 159, 64, 0.6)',
-    'rgba(255, 205, 210, 0.6)',
-    'rgba(174, 214, 241, 0.6)',
-    'rgba(50, 200, 190, 0.6)',
-    'rgba(250, 160, 241, 0.6)',
-    'rgba(174, 45, 241, 0.6)',
-  ];
-
-  const borderColors = [
-    'rgba(255, 99, 132, 1)',
-    'rgba(255, 206, 86, 1)',
-    'rgba(75, 192, 192, 1)',
-    'rgba(153, 102, 255, 1)',
-    'rgba(255, 159, 64, 1)',
-    'rgba(255, 205, 210, 1)',
-    'rgba(174, 214, 241, 1)',
-    'rgba(50, 200, 190, 1)',
-    'rgba(250, 160, 241, 1)',
-    'rgba(174, 45, 241, 1)',
-  ];
-
-  // Crie o gráfico
   charts[canvasId] = new Chart(ctx, {
-    type: chartType,  // Tipo de gráfico
+    type: chartType,
     data: {
       labels: labels,
       datasets: [{
@@ -93,58 +106,65 @@ function renderChart(canvasId, labels, data, title, chartType = 'bar') {
       },
       plugins: {
         legend: {
-          display: false // Oculta a legenda padrão do Chart.js
+          display: false
         }
       }
     }
   });
 
-  // Adiciona a legenda personalizada
   renderCustomLegend(`${canvasId}Legend`, labels, backgroundColors.slice(0, labels.length));
 }
 
-
-// Função para alterar o tipo de gráfico dinamicamente
 function changeChartType(canvasId, newType) {
   const chart = charts[canvasId];
   if (chart) {
     const labels = chart.data.labels;
     const data = chart.data.datasets[0].data;
     const title = chart.data.datasets[0].label;
-    renderChart(canvasId, labels, data, title, newType); // Recria o gráfico com o novo tipo
+    renderChart(canvasId, labels, data, title, newType);
   }
 }
 
-// Funções para carregar e renderizar os gráficos
-async function loadCategoryData() {
-  const data = await fetchData(`${baseUrl}/categories`);
+async function loadCategoryData(propertyUrl) {
+  const data = await fetchData(`${propertyUrl}/categories`);
   const labels = Object.keys(data);
   const values = Object.values(data);
+
   renderChart('categoryChart', labels, values, 'Quantidade por Categoria');
+
 }
 
-async function loadBreedData() {
-  const data = await fetchData(`${baseUrl}/breeds`);
+async function loadBreedData(propertyUrl) {
+  const data = await fetchData(`${propertyUrl}/breeds`);
   const labels = Object.keys(data);
   const values = Object.values(data);
+
   renderChart('breedChart', labels, values, 'Quantidade por Raça');
 }
 
-async function loadGenderData() {
-  const data = await fetchData(`${baseUrl}/genders`);
+async function loadGenderData(propertyUrl) {
+  const data = await fetchData(`${propertyUrl}/genders`);
   const labels = Object.keys(data);
   const values = Object.values(data);
+
   renderChart('genderChart', labels, values, 'Quantidade por Sexo');
 }
 
-// Função para obter e exibir o total de animais
-async function loadTotalAnimals() {
-  const data = await fetchData(`${baseUrl}/total`);
+async function loadTotalAnimals(propertyUrl) {
+  const data = await fetchData(`${propertyUrl}/total`);
   const totalAnimalsElement = document.getElementById('totalAnimals');
-  totalAnimalsElement.textContent = `Total de Animais: ${data.totalAnimals}`;
-}
 
-// Adiciona event listeners para alterar o tipo de gráfico
+  if (data.totalAnimals === 0) {
+    totalAnimalsElement.textContent = 'Nenhum animal encontrado na propriedade.';
+    hiddenVisibleCharts.style.display = 'none';
+
+  } else {
+    totalAnimalsElement.textContent = `Total de Animais: ${data.totalAnimals}`;
+    hiddenVisibleCharts.style.display = 'block';
+  }
+}
+hiddenVisibleCharts.style.display = 'none';
+
 document.querySelectorAll('.btnBar').forEach((e) => {
   e.addEventListener('click', () => {
     const chartContainer = e.closest('.chart-container');
@@ -172,10 +192,7 @@ document.querySelectorAll('.btnLine').forEach((e) => {
   });
 });
 
-// Carregar todos os gráficos quando a página carregar
+
 window.onload = () => {
-  loadTotalAnimals();
-  loadCategoryData();
-  loadBreedData();
-  loadGenderData();
+  createPropertyButtons();
 };

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rumin Web/Perfil</title>
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
 
     <script
       defer
@@ -15,8 +15,7 @@
       src="https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js"
     ></script>
     <script defer src="../js/script.js"></script>
-    <script defer src="../js/profile.js"></script>
-    <label defer src="../js/label.js"></label>
+    <script defer type="module" src="../js/profile.js"></script>
   </head>
   <body>
     <div class="header">
@@ -27,7 +26,7 @@
         <a href="../pages/property.html">Propriedades</a>
         <a href="../pages/flock.html">Rebanho</a>
         <a href="../pages/dashboard.html">Estatísticas</a>
-        <a href="../index.html">Sair</a>
+        <a class="logout" href="../index.html">Sair</a>
       </div>
     </div>
     <div class="introduce">

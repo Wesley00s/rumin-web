@@ -1,8 +1,6 @@
-// Importar os módulos necessários do Firebase
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js';
 import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js';
 
-// Sua configuração do Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyDauCKJDHcESVWyTxeW2oVHk7eoGHN94hY",
   authDomain: "teste-ruminweb.firebaseapp.com",
@@ -13,7 +11,6 @@ const firebaseConfig = {
   measurementId: "G-5MR6JFYPSE"
 };
 
-// Inicializar o Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 

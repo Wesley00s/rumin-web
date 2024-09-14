@@ -2,7 +2,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 20px;
+    padding: 1rem;
+    font-size: 1.1rem;
 }
 
 .data-rebanho {
@@ -40,8 +41,25 @@
     border-radius: 8px;
 }
 
+.status-indicator {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 8px;
+    margin-bottom: .1rem;
+}
 
-/* Estilos responsivos para telas menores */
+.field {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 5px;
+    margin-top: 1rem;
+    padding: 1rem;
+}
+
 @media (max-width: 768px) {
     .data-rebanho {
         width: 100%;

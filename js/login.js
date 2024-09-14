@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             window.location.href = '../pages/profile.html';
             sessionStorage.setItem("userEmail", userCredential.user.email)
-            alert("Login realizado com sucesso!");
+            // alert("Login realizado com sucesso!");
         } catch (error) {
             console.error('Erro ao fazer login:', error.message);
             alert('Email ou senha inválidos!');

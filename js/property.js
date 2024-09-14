@@ -25,7 +25,7 @@ const createPropriedadeSection = (propriedade) => {
                         <input type="text" readOnly value="${propriedade.otherFarmAnimals}" />
                     </div>
                 </div>
-                <button onclick="fetchAnimals('${propriedade.propertyName}')">Ver animais</button>
+                <button class="btnVerAnimais" onclick="fetchAnimals('${propriedade.propertyName}')">Ver animais</button>
             </div>
         `;
 };
@@ -33,10 +33,11 @@ const createPropriedadeSection = (propriedade) => {
 async function fetchPropriedadeData() {
     const userEmail = sessionStorage.getItem("userEmail");
     const token = sessionStorage.getItem("token");
+    const container = document.getElementById("propriedades-container");
 
     try {
         const response = await fetch(
-            `http://0.0.0.0:8080/user/${userEmail}/properties`,
+            `https://ruminweb-api-repo-v1-wvlj.onrender.com/user/${userEmail}/properties`,
             {
                 headers: {
                     Authorization: "Bearer " + token,
@@ -50,9 +51,10 @@ async function fetchPropriedadeData() {
 
         const data = await response.json();
 
-        const container = document.getElementById("propriedades-container");
+        sessionStorage.setItem("properties", JSON.stringify(data));
 
         if (data.length > 0) {
+            container.innerHTML = "";
             data.forEach((propriedade) => {
                 container.innerHTML += createPropriedadeSection(propriedade);
             });

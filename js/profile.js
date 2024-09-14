@@ -1,10 +1,10 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     const userEmail = sessionStorage.getItem('userEmail');
     async function fetchPropriedadeData() {
         try {
-            const response = await fetch('http://0.0.0.0:8080/user/' + userEmail);
+            const response = await fetch('https://ruminweb-api-repo-v1-wvlj.onrender.com/user/' + userEmail);
             const data = await response.json();
-            console.log(data);
 
             const firstName = data.firstName;
             const lastName = data.lastName;
@@ -20,3 +20,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetchPropriedadeData();
 });
+
