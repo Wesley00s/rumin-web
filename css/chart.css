@@ -142,6 +142,9 @@ h1 {
 
 /* Estilo para o container da animação de carregamento */
 .loading-spinner {
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
     position: fixed;
     top: 0;
     left: 0;

@@ -6,6 +6,7 @@
     <title>Rumin Web/Perfil</title>
     <link rel="stylesheet" href="../css/style.css" />
 
+    <link rel="stylesheet" href="../css/profile.css" />
     <script
       defer
       src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"
@@ -38,6 +39,10 @@
         </div>
       </div>
       <div class="container">
+        <div id="loadingSpinner" class="loading-spinner hidden">
+          Carregando...
+          <div class="spinner"></div>
+        </div>
         <div class="input-wrapper">
           <label for="fullName">Nome completo</label>
           <input id="fullName" type="text" readonly value="Nome completo" />
@@ -68,9 +73,7 @@
           <img src="../images/cidts.jpeg" alt="" />
           <img src="../images/ifce.png" alt="" />
         </div>
-        <div class="text">
-          All Right Reserved
-        </div>
+        <div class="text">All Right Reserved</div>
       </div>
     </div>
   </body>
