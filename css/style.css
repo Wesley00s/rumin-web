@@ -220,7 +220,7 @@ header {
   color: #647378;
 }
 
-
+/*
 @media (max-width:1285px) {
   #menu-icons {
     display: block;
@@ -268,7 +268,7 @@ header {
     border-bottom: 0.5rem solid var(--main-color);
   }
 }
-
+*/
 
 .data-prod {
   padding: 20px;
